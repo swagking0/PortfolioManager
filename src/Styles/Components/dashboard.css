@@ -1,0 +1,121 @@
+.dashboard__container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.dashboard__wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard__dashboardmanagerwrapper {
+  width: 100%;
+}
+
+/*
+  dashboard manager CSS 
+*/
+.dashboardmanager__container {
+  width: 100%;
+  height: 100%;
+}
+
+.dashboardmanager__wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.dashboardmanager__manageritemwrapper {
+  width: 100%;
+}
+
+/*
+  data manager CSS
+*/
+.datamanageritem__wrapper {
+  width: 100%;
+}
+
+.datamanager__itemholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+.datamanager__skeletonholder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+/*
+  data manager item CSS
+*/
+.datamanager__itemwrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-flow: column nowrap;
+}
+
+.datamanager__item {
+  width: 300px;
+  height: 50px;
+  color: var(--darkblue-color);
+  margin-top: 10px;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.datamanageritem__content {
+  width: 100%;
+}
+
+.datamanageritem__title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.datamanageritem__titlefirstletter {
+  width: 50px;
+  height: 50px;
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.datamanageritem__title .datamanageritem__titlefirstletter span {
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+.datamanageritem__title span {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.datamanageritem__icon {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+/*
+  data manager item detail CSS
+*/
+.datamanageritemdetail__container {
+  min-height: 100vh;
+  width: 100%;
+}

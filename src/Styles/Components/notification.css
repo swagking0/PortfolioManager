@@ -1,0 +1,29 @@
+.notification__container {
+  background-color: var(--darkblue-color);
+  color: var(--white-color);
+  padding: 16px;
+  position: absolute;
+  top: -100px;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+  transition: top 0.5s ease;
+}
+
+.hide__container {
+  top: 100px;
+}
+
+.notification__msg {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.notification__icon {
+  margin-top: 5px;
+  margin-right: 10px;
+}

@@ -1,0 +1,75 @@
+.navbar__container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+
+.navbar__wrapper {
+  width: 95%;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+}
+
+.navbar__leftwrapper {
+  padding: 10px;
+}
+
+.navbar__logowrapper {
+  background-color: var(--darkblue-color);
+  padding: 10px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.navbar__brandlogo {
+  font-size: 1.7rem;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.navbar__rightwrapper {
+  padding: 10px 40px;
+}
+
+.links__holderwrapper {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.links__holder {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.links__btn {
+  padding: 10px 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--darkblue-color);
+  border-radius: 40px;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.links__btn:hover {
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.links__btn span {
+  margin-top: 5px;
+  margin-left: 5px;
+}

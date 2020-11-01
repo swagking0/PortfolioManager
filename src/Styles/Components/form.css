@@ -1,0 +1,112 @@
+.form__formwrapper {
+  width: 100%;
+}
+
+.form__formmain {
+  padding: 10px 40px;
+}
+
+.form__textfield {
+  position: relative;
+  margin: 30px 0;
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form__textfield input {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.form__textfield label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: rgba(40, 39, 86, 0.65);
+  transform: translateY(-50%);
+  text-transform: capitalize;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.form__textfield input:focus ~ label,
+.form__textfield input:valid ~ label {
+  top: -10px;
+  color: var(--darkblue-color);
+}
+
+.form__btnwrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row nowrap;
+}
+
+.form__formmain input[type="submit"] {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--darkblue-color);
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  outline: none;
+}
+
+.form__formmain input[type="submit"]:hover {
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form__formmain input[type="reset"] {
+  padding: 16px 32px;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--darkblue-color);
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  outline: none;
+}
+
+.form__formmain input[type="reset"]:hover {
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form__informationfield {
+  width: 100%;
+  padding: 10px;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+}
+
+.form__informationfield p {
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+
+.form__infohighlighter {
+  background: var(--darkblue-color);
+  color: var(--white-color);
+  text-transform: none;
+  padding: 0 5px;
+}
