@@ -23,6 +23,13 @@ class Notification extends Component {
     this.onShow(msg);
   });
 
+  onClick = () => {
+    clearTimeout(this.timeout);
+    this.setState({
+      displayNotify: false,
+    });
+  };
+
   onShow = (msg) => {
     if (this.timeout) {
       clearTimeout(this.timeout);
@@ -64,6 +71,7 @@ class Notification extends Component {
             ? "notification__container hide__container"
             : "notification__container"
         }
+        onClick={this.onClick}
       >
         <span className="notification__icon">
           <ImNotification />

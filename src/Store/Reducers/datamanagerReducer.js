@@ -1,14 +1,20 @@
+import { notify } from "../../Components/Notification/Notification";
+
 const initState = {};
 
 function datamanagerReducer(state = initState, action) {
   switch (action.type) {
     case "CREATE_DATAMANAGER":
+      notify("data manager created successful.");
       return state;
     case "ERROR_DATAMANAGER":
+      notify(action.err.message);
       return state;
     case "DELETE_DATAMANAGER":
+      notify("data manager delected successful.");
       return state;
     case "ERROR_DELETEDATAMANAGER":
+      notify(action.err.message);
       return state;
     default:
       return state;
