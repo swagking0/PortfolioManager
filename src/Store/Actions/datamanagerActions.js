@@ -8,14 +8,8 @@ export const createDataManager = (datamanager) => {
     const db = firebase.firestore();
 
     db.collection("DM")
-      .doc(datamanager.DMName)
-      .set({
-        ...datamanager,
-      });
-
-    db.collection(datamanager.DMName)
       .add({
-        createdAt: new Date(),
+        ...datamanager,
       })
       .then(() => {
         dispatch({ type: "CREATE_DATAMANAGER", datamanager });
@@ -35,19 +29,28 @@ export const deleteDataManager = (datamanager) => {
     const firebase = getFirebase();
     const db = firebase.firestore();
     const docID = datamanager.DMId;
+    /*const docDBName = datamanager.DMName;*/
 
-    db.collection("DM").doc(docID).delete();
-
-    db.collection(docID)
-      .get()
-      .then((res) => {
-        res.forEach((element) => {
-          element.ref.delete();
-        });
+    db.collection("DM")
+      .doc(docID)
+      .delete()
+      .then(() => {
         dispatch({ type: "DELETE_DATAMANAGER", docID });
       })
       .catch((err) => {
         dispatch({ type: "ERROR_DELETEDATAMANAGER", err });
       });
+
+    /*db.collection(docDBName)
+      .get()
+      .then((res) => {
+        res.forEach((element) => {
+          element.ref.delete();
+        });
+        dispatch({ type: "DELETE_DATAMANAGER", docDBName });
+      })
+      .catch((err) => {
+        dispatch({ type: "ERROR_DELETEDATAMANAGER", err });
+      });*/
   };
 };

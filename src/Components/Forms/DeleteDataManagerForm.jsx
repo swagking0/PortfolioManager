@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 class DeleteDataManagerForm extends Component {
   state = {
     DMId: "",
+    DMName: this.props.datamanager.DMName,
   };
 
   handleOnChange = (e) => {
