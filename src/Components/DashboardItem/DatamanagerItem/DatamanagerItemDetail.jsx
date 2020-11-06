@@ -1,14 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
+import "../../../Styles/Components/datamanageritemdetail.css";
+import { FaSitemap } from "react-icons/fa";
 
-function DatamanagerItemDetail(props) {
-  let { params } = props.match;
-  return (
-    <div className="datamanageritemdetail__container">
-      <h1>{params.dmname}</h1>
-      <h3>{params.id}</h3>
-      <p>Hello I am a data manager created by you!</p>
-    </div>
-  );
+import DatamanagerItemDetailModal from "./SubComponents/DatamanagerItemDetailModal";
+
+class DatamanagerItemDetail extends Component {
+  state = {
+    showModal: false,
+    dmname: this.props.match.params.dmname,
+  };
+
+  openModal = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  };
+
+  render() {
+    return (
+      <div className="datamanageritemdetail__container">
+        <div className="datamanageritemdetail__wrapper">
+          <div
+            className="datamanageritemdetail__button"
+            onClick={this.openModal}
+          >
+            create data holder{" "}
+            <span>
+              <FaSitemap />
+            </span>
+          </div>
+          <DatamanagerItemDetailModal
+            showModal={this.state.showModal}
+            openModal={this.openModal}
+            dmname={this.state.dmname}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default DatamanagerItemDetail;
