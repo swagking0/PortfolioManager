@@ -6,10 +6,18 @@
 .datamanageritemdetail__wrapper {
   width: 100%;
   height: 100%;
+}
+
+.datamanageritemdetail__btnwrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
+}
+
+.datamanageritemdetail__displaywrapper {
+  width: 100%;
 }
 
 .datamanageritemdetail__button {

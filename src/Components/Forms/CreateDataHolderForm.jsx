@@ -1,9 +1,22 @@
 import React, { Component } from "react";
 import "../../Styles/Components/form.css";
 
+/**
+ * Importing actions here
+ */
+import { createDataHolder } from "../../Store/Actions/dataholderActions";
+/* +++++++++++++++++++ */
+
+/**
+ * React Redux
+ */
+import { connect } from "react-redux";
+/* +++++++++++++++++++ */
+
 class CreateDataHolderForm extends Component {
   state = {
     DMName: this.props.dmname,
+    DMId: this.props.dmid,
     DHName: "",
   };
 
@@ -15,6 +28,7 @@ class CreateDataHolderForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.createDataHolder(this.state);
     this.props.openModal();
   };
 
@@ -29,11 +43,11 @@ class CreateDataHolderForm extends Component {
           <div className="form__textfield">
             <input
               type="text"
-              id="DMName"
+              id="DHName"
               required
               onChange={this.handleOnChange}
             />
-            <label htmlFor="DMName">data holder name</label>
+            <label htmlFor="DHName">data holder name</label>
           </div>
           <div className="form__btnwrapper">
             <input type="submit" value="create" />
@@ -45,4 +59,12 @@ class CreateDataHolderForm extends Component {
   }
 }
 
-export default CreateDataHolderForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createDataHolder: (dataholder) => {
+      dispatch(createDataHolder(dataholder));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateDataHolderForm);

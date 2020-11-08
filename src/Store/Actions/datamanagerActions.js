@@ -29,28 +29,26 @@ export const deleteDataManager = (datamanager) => {
     const firebase = getFirebase();
     const db = firebase.firestore();
     const docID = datamanager.DMId;
-    /*const docDBName = datamanager.DMName;*/
+    const docDBName = datamanager.DMName;
 
     db.collection("DM")
       .doc(docID)
-      .delete()
-      .then(() => {
-        dispatch({ type: "DELETE_DATAMANAGER", docID });
-      })
-      .catch((err) => {
-        dispatch({ type: "ERROR_DELETEDATAMANAGER", err });
-      });
-
-    /*db.collection(docDBName)
+      .collection(docDBName)
       .get()
       .then((res) => {
         res.forEach((element) => {
           element.ref.delete();
         });
-        dispatch({ type: "DELETE_DATAMANAGER", docDBName });
+      });
+
+    db.collection("DM")
+      .doc(docID)
+      .delete()
+      .then(() => {
+        dispatch({ type: "DELETE_DATAMANAGER", datamanager });
       })
       .catch((err) => {
         dispatch({ type: "ERROR_DELETEDATAMANAGER", err });
-      });*/
+      });
   };
 };

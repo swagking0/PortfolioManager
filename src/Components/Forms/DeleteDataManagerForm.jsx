@@ -68,6 +68,16 @@ class DeleteDataManagerForm extends Component {
             />
             <label htmlFor="DMName">data manager id</label>
           </div>
+          <div className="form__informationfield">
+            <p>
+              <span className="form__infohighlighter">Note:</span> all the data
+              holders within data manager{" "}
+              <span className="form__infohighlighter">
+                {this.props.datamanager.DMName}
+              </span>{" "}
+              will be deleted permanently
+            </p>
+          </div>
           <div className="form__btnwrapper">
             <input type="submit" value="delete" />
             <input type="reset" />

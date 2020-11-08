@@ -3,7 +3,7 @@ import { RiCloseCircleLine } from "react-icons/ri";
 
 import CreateDataHolderForm from "../../../Forms/CreateDataHolderForm";
 
-function DatamanagerItemDetailModal({ showModal, openModal, dmname }) {
+function DatamanagerItemDetailModal({ showModal, openModal, dmname, dmid }) {
   const node = useRef();
 
   const handleClickOutside = useCallback(
@@ -44,7 +44,11 @@ function DatamanagerItemDetailModal({ showModal, openModal, dmname }) {
                 </span>
               </div>
             </div>
-            <CreateDataHolderForm openModal={openModal} dmname={dmname} />
+            <CreateDataHolderForm
+              openModal={openModal}
+              dmname={dmname}
+              dmid={dmid}
+            />
           </div>
         </div>
       ) : null}
