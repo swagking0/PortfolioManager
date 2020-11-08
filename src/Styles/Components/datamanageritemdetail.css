@@ -18,6 +18,11 @@
 
 .datamanageritemdetail__displaywrapper {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+  padding: 10px;
 }
 
 .datamanageritemdetail__button {
@@ -102,4 +107,12 @@
 .datamanageritemdetailmodal__closebtn span {
   margin-top: 5px;
   margin-left: 5px;
+}
+
+/*
+  data holder item list CSS
+*/
+
+.dataholderitemlist__wrapper {
+  width: 80%;
 }

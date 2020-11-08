@@ -1,14 +1,14 @@
 import React from "react";
+import Accordion from "../Accordion/Accordion";
 
 function DataholderItemList({ dataholders }) {
   return (
-    <div>
+    <div className="dataholderitemlist__wrapper">
       {dataholders &&
         dataholders.map((dataholder) => {
           return (
             <div key={dataholder.id}>
-              <div>{dataholder.DMName}</div>
-              <div>{dataholder.DHName}</div>
+              <Accordion />
             </div>
           );
         })}
