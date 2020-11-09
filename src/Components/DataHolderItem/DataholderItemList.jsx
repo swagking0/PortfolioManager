@@ -8,7 +8,7 @@ function DataholderItemList({ dataholders }) {
         dataholders.map((dataholder) => {
           return (
             <div key={dataholder.id}>
-              <Accordion />
+              <Accordion dataholder={dataholder} />
             </div>
           );
         })}

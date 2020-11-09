@@ -4,7 +4,7 @@ import "../../Styles/Components/form.css";
 /**
  * Importing actions here
  */
-import { deleteDataManager } from "../../Store/Actions/datamanagerActions";
+import { deleteDataHolder } from "../../Store/Actions/dataholderActions";
 /* +++++++++++++++++++ */
 
 /**
@@ -13,10 +13,12 @@ import { deleteDataManager } from "../../Store/Actions/datamanagerActions";
 import { connect } from "react-redux";
 /* +++++++++++++++++++ */
 
-class DeleteDataManagerForm extends Component {
+class DeleteDataHolderForm extends Component {
   state = {
-    DMId: "",
-    DMName: this.props.datamanager.DMName,
+    DHId: "",
+    DHName: this.props.dataholder.DHName,
+    DMId: this.props.dataholder.DMId,
+    DMName: this.props.dataholder.DMName,
   };
 
   handleOnChange = (e) => {
@@ -27,8 +29,8 @@ class DeleteDataManagerForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.DMId === this.props.datamanager.id) {
-      this.props.deleteDataManager(this.state);
+    if (this.state.DHId === this.props.dataholder.id) {
+      this.props.deleteDataHolder(this.state);
       this.props.openModal();
     }
   };
@@ -45,16 +47,16 @@ class DeleteDataManagerForm extends Component {
             <p>
               are you sure that you want to delete{" "}
               <span className="form__infohighlighter">
-                {this.props.datamanager.DMName}
+                {this.props.dataholder.DHName}
               </span>{" "}
-              data manager?
+              data holder?
             </p>
           </div>
           <div className="form__informationfield">
             <p>
               copy the id below{" "}
               <span className="form__infohighlighter">
-                {this.props.datamanager.id}
+                {this.props.dataholder.id}
               </span>{" "}
               to confirm
             </p>
@@ -62,18 +64,18 @@ class DeleteDataManagerForm extends Component {
           <div className="form__textfield">
             <input
               type="text"
-              id="DMId"
+              id="DHId"
               required
               onChange={this.handleOnChange}
             />
-            <label htmlFor="DMId">data manager id</label>
+            <label htmlFor="DHId">data holder id</label>
           </div>
           <div className="form__informationfield">
             <p>
               <span className="form__infohighlighter">Note:</span> all the data
-              holders within data manager{" "}
+              within data holder{" "}
               <span className="form__infohighlighter">
-                {this.props.datamanager.DMName}
+                {this.props.dataholder.DHName}
               </span>{" "}
               will be deleted permanently
             </p>
@@ -90,10 +92,10 @@ class DeleteDataManagerForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteDataManager: (datamanager) => {
-      dispatch(deleteDataManager(datamanager));
+    deleteDataHolder: (dataholder) => {
+      dispatch(deleteDataHolder(dataholder));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(DeleteDataManagerForm);
+export default connect(null, mapDispatchToProps)(DeleteDataHolderForm);
