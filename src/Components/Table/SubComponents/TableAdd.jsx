@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { notify } from "../../Notification/Notification";
 
 /**
  * Importing actions here
@@ -30,7 +31,11 @@ class TableAdd extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createDataItem(this.state);
+    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+      this.props.createDataItem(this.state);
+    } else {
+      notify("You do not have enough permission to perform this action.");
+    }
     e.target.reset();
   };
 
@@ -69,6 +74,13 @@ class TableAdd extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const uid = state.firebase.auth.uid;
+  return {
+    uid: uid,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createDataItem: (dataitem) => {
@@ -77,4 +89,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(TableAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(TableAdd);

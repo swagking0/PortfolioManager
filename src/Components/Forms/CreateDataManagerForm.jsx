@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../Styles/Components/form.css";
+import { notify } from "../Notification/Notification";
 
 /**
  * Importing actions here
@@ -26,7 +27,11 @@ class CreateDataManagerForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createDataManager(this.state);
+    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+      this.props.createDataManager(this.state);
+    } else {
+      notify("You do not have enough permission to perform this action.");
+    }
     this.props.openModal();
   };
 
@@ -57,6 +62,13 @@ class CreateDataManagerForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const uid = state.firebase.auth.uid;
+  return {
+    uid: uid,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createDataManager: (datamanager) =>
@@ -64,4 +76,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateDataManagerForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateDataManagerForm);

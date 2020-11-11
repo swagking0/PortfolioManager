@@ -7,6 +7,7 @@ import {
   updateDataItem,
   deleteDataItem,
 } from "../../../Store/Actions/tableActions";
+import { notify } from "../../Notification/Notification";
 
 import { connect } from "react-redux";
 
@@ -35,21 +36,35 @@ class TableListItem extends Component {
   };
 
   handleUpdate = () => {
-    this.setState(
-      {
-        isinEditMode: !this.state.isinEditMode,
-        fieldvalue: this.state.updatefieldvalue,
-      },
-      () => {
-        if (this.state.fieldvalue !== this.props.fieldvalue) {
-          this.props.updateDataItem(this.state);
+    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+      this.setState(
+        {
+          isinEditMode: !this.state.isinEditMode,
+          fieldvalue: this.state.updatefieldvalue,
+        },
+        () => {
+          if (this.state.fieldvalue !== this.props.fieldvalue) {
+            this.props.updateDataItem(this.state);
+          }
         }
-      }
-    );
+      );
+    } else {
+      this.setState({
+        isinEditMode: !this.state.isinEditMode,
+      });
+      notify("You do not have enough permission to perform this action.");
+    }
   };
 
   handleDelete = () => {
-    this.props.deleteDataItem(this.state);
+    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+      this.props.deleteDataItem(this.state);
+    } else {
+      this.setState({
+        isinEditMode: !this.state.isinEditMode,
+      });
+      notify("You do not have enough permission to perform this action.");
+    }
   };
 
   renderEditView = () => {
@@ -115,6 +130,13 @@ class TableListItem extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const uid = state.firebase.auth.uid;
+  return {
+    uid: uid,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateDataItem: (dataitem) => {
@@ -126,4 +148,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(TableListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(TableListItem);

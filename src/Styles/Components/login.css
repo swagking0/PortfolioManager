@@ -8,34 +8,10 @@
 .login__wrapper {
   height: 100%;
   width: 100%;
-  /*background-color: cadetblue;*/
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-flow: row wrap;
-}
-
-.login__leftwrapper {
-  /*background-color: coral;*/
-  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: column nowrap;
-}
-
-.loginleft__imgwrapper {
-  height: 450px;
-  width: 450px;
-}
-
-.loginleft__imgwrapper img {
-  width: 100%;
-  height: 100%;
-}
-
-.login__rightwrapper {
-  padding: 20px;
+  flex-flow: row wrap;
 }
 
 .loginright__loginformwrapper {
