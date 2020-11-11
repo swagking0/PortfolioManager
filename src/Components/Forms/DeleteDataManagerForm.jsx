@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../Styles/Components/form.css";
+import { notify } from "../Notification/Notification";
 
 /**
  * Importing actions here
@@ -27,10 +28,16 @@ class DeleteDataManagerForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.DMId === this.props.datamanager.id) {
-      this.props.deleteDataManager(this.state);
-      this.props.openModal();
+    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+      if (this.state.DMId === this.props.datamanager.id) {
+        this.props.deleteDataManager(this.state);
+      } else {
+        notify("Entered ID is worng. Please, try again.");
+      }
+    } else {
+      notify("You do not have enough permission to perform this action.");
     }
+    this.props.openModal();
   };
 
   render() {
@@ -88,6 +95,13 @@ class DeleteDataManagerForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  const uid = state.firebase.auth.uid;
+  return {
+    uid: uid,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteDataManager: (datamanager) => {
@@ -96,4 +110,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(DeleteDataManagerForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeleteDataManagerForm);

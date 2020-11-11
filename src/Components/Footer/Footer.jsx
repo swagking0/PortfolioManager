@@ -16,7 +16,7 @@ function Footer() {
         <h3>
           Copyright &#169; 2020 All rights reserved | &#169;{" "}
           <a
-            href="https://www.linkedin.com/in/mohith-bhargav-sunkara-930796119/"
+            href="https://swagking0.github.io/Portfolio/"
             target="_blank"
             rel="noopener noreferrer"
           >
