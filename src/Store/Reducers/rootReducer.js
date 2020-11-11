@@ -4,6 +4,7 @@ import { firestoreReducer } from "redux-firestore";
 import authReducer from "./authReducer";
 import datamanagerReducer from "./datamanagerReducer";
 import dataholderReducer from "./dataholderReducer";
+import tableReducer from "./tableReducer";
 
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   datamanager: datamanagerReducer,
   dataholder: dataholderReducer,
+  table: tableReducer,
 });
 
 export default rootReducer;

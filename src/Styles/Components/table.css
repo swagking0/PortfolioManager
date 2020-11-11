@@ -1,0 +1,168 @@
+.table__container {
+  width: 100%;
+}
+
+.table__wrapper {
+  width: 100%;
+}
+
+.table__addwrapper {
+  width: 100%;
+}
+
+/*
+  table add CSS
+*/
+.tableadd__container {
+  width: 100%;
+}
+
+.tableadd__wrapper {
+  width: 100%;
+}
+
+.tableadd__formmain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+
+.tableadd__textfield {
+  position: relative;
+  margin: 30px 20px;
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tableadd__textfield input,
+.tableadd__textfield textarea {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.tableadd__textfield textarea {
+  width: 300px;
+  height: 50px;
+  padding-top: 5px;
+  resize: none;
+  letter-spacing: 1px;
+}
+
+.tableadd__textfield label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: rgba(40, 39, 86, 0.65);
+  transform: translateY(-50%);
+  text-transform: capitalize;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.tableadd__textfield input:focus ~ label,
+.tableadd__textfield input:valid ~ label,
+.tableadd__textfield textarea:focus ~ label,
+.tableadd__textfield textarea:valid ~ label {
+  top: -10px;
+  color: var(--darkblue-color);
+}
+
+.tableadd__formmain input[type="submit"] {
+  padding: 12px 40px;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--darkblue-color);
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  outline: none;
+}
+
+.tableadd__formmain input[type="submit"]:hover {
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/*
+  table list CSS
+*/
+.tablelist__container {
+  width: 100%;
+}
+
+.tablelist__wrapper {
+  width: 100%;
+}
+
+/*
+  table list item CSS
+*/
+.tablelistitem__wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+
+.tablelistitem__itemwrapper {
+  width: 250px;
+  height: 100px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  overflow: auto;
+}
+
+.tablelistitem__itemwrapper textarea {
+  padding: 10px 5px;
+  width: 100%;
+  height: 100%;
+  background: none;
+  outline: none;
+  resize: none;
+  color: var(--darkblue-color);
+  letter-spacing: 1px;
+  font-weight: 400;
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+    inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.actionbtn__btnwrapper {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: row nowrap;
+}
+
+.actionbtn__btn {
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  background-color: var(--darkblue-color);
+  color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.actionbtn__btn span {
+  margin-top: 5px;
+}

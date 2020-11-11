@@ -43,7 +43,7 @@ function Accordion({ dataholder }) {
       <div
         className={`accordion__accordionpanel ${activeClass ? "active" : null}`}
       >
-        <Table />
+        <Table dataholder={dataholder} />
       </div>
     </div>
   );
