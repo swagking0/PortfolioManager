@@ -9,7 +9,7 @@ import DatamanagerItemDetail from "./Components/DashboardItem/DatamanagerItem/Da
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Dashboard} />
-    <Route path="/datamanager/:id" component={DatamanagerItemDetail} />
+    <Route path="/datamanager/:id/:dmname" component={DatamanagerItemDetail} />
     <Route path="/login" component={Login} />
     <Route path="/about" component={About} />
   </Switch>

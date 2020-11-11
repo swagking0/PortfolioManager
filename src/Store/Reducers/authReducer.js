@@ -8,13 +8,13 @@ const authReducer = (state = initState, action) => {
       notify("login successful.");
       return state;
     case "LOG_IN_ERROR":
-      notify("login failed. check your email or password.");
+      notify(action.err.message);
       return state;
     case "LOG_OUT":
       notify("logout successful.");
       return state;
     case "LOG_OUT_ERROR":
-      notify("logout failed.");
+      notify(action.err.message);
       return state;
     default:
       return state;

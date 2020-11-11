@@ -34,12 +34,19 @@ class DashboardManager extends Component {
 }
 
 const mapStateToProps = (state) => {
+  const uid = state.firebase.auth.uid;
   return {
+    uid: uid,
     dm: state.firestore.ordered.DM,
   };
 };
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: "DM" }])
+  firestoreConnect((props) => {
+    if (props.uid) {
+      return [{ collection: "DM" }];
+    }
+    return [];
+  })
 )(DashboardManager);

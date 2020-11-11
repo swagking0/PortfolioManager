@@ -11,9 +11,6 @@ import { connect } from "react-redux";
 /* ++++++++++++++++++ */
 
 class Dashboard extends Component {
-  state = {
-    managerName: "personal data",
-  };
   render() {
     const { uid } = this.props;
 

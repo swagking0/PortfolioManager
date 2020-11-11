@@ -19,7 +19,9 @@ function DatamanagerItemList({ datamanagers }) {
           storelastlenght();
           return (
             <div className="datamanager__itemwrapper" key={datamanager.id}>
-              <Link to={"/datamanager/" + datamanager.id}>
+              <Link
+                to={"/datamanager/" + datamanager.id + "/" + datamanager.DMName}
+              >
                 <DatamanagerItemSummary datamanager={datamanager} />
               </Link>
               <DataManagerDelete datamanager={datamanager} />

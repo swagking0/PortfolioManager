@@ -102,6 +102,7 @@
 .form__informationfield p {
   letter-spacing: 1px;
   text-transform: capitalize;
+  line-height: 25px;
 }
 
 .form__infohighlighter {
