@@ -12,6 +12,8 @@ import { deleteDataHolder } from "../../Store/Actions/dataholderActions";
  * React Redux
  */
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 /* +++++++++++++++++++ */
 
 class DeleteDataHolderForm extends Component {
@@ -20,6 +22,7 @@ class DeleteDataHolderForm extends Component {
     DHName: this.props.dataholder.DHName,
     DMId: this.props.dataholder.DMId,
     DMName: this.props.dataholder.DMName,
+    TotalDH: 0,
   };
 
   handleOnChange = (e) => {
@@ -30,17 +33,24 @@ class DeleteDataHolderForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
-      if (this.state.DHId === this.props.dataholder.id) {
-        this.props.deleteDataHolder(this.state);
-      } else {
-        notify("Entered ID is worng. Please, try again.");
-      }
-    } else {
-      notify("You do not have enough permission to perform this action.");
-    }
+    this.setState(
+      {
+        TotalDH: this.props.AD[0].TotalDH - 1,
+      },
+      () => {
+        if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+          if (this.state.DHId === this.props.dataholder.id) {
+            this.props.deleteDataHolder(this.state);
+          } else {
+            notify("Entered ID is worng. Please, try again.");
+          }
+        } else {
+          notify("You do not have enough permission to perform this action.");
+        }
 
-    this.props.openModal();
+        this.props.openModal();
+      }
+    );
   };
 
   render() {
@@ -100,8 +110,10 @@ class DeleteDataHolderForm extends Component {
 
 const mapStateToProps = (state) => {
   const uid = state.firebase.auth.uid;
+  const { AD } = state.firestore.ordered;
   return {
     uid: uid,
+    AD: AD,
   };
 };
 
@@ -113,7 +125,17 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props) => {
+    if (props.uid) {
+      return [
+        {
+          collection: "AD",
+          doc: "appData",
+        },
+      ];
+    }
+    return [];
+  })
 )(DeleteDataHolderForm);

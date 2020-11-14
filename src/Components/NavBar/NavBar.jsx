@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 import "../../Styles/Components/navbar.css";
+import SubNavBar from "./SubComponents/SubNavBar";
 
-import SignedInLinks from "./SubComponents/SignedInLinks";
-import SignedOutLinks from "./SubComponents/SignedOutLinks";
+import { RiCloseFill } from "react-icons/ri";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 
 /**
  *  Importing actions here
@@ -19,28 +20,56 @@ import { connect } from "react-redux";
 /* ++++++++++++++++++ */
 
 class NavBar extends Component {
+  state = {
+    showSideBar: false,
+  };
+
+  handleSideBar = () => {
+    this.setState({
+      showSideBar: !this.state.showSideBar,
+    });
+  };
+
   handleLogOut = () => {
-    this.props.logOut();
+    this.setState(
+      {
+        showSideBar: !this.state.showSideBar,
+      },
+      () => {
+        this.props.logOut();
+      }
+    );
   };
 
   render() {
     const { uid } = this.props;
-    const links = uid ? (
-      <SignedInLinks handleLogOut={this.handleLogOut} />
-    ) : (
-      <SignedOutLinks />
-    );
+
     return (
       <div className="navbar__container">
         <div className="navbar__wrapper">
-          <div className="navbar__leftwrapper">
-            <NavLink exact to="/">
-              <div className="navbar__logowrapper">
-                <h2 className="navbar__brandlogo">profile manager.</h2>
-              </div>
+          <div className="navbar__logowrapper">
+            <NavLink to={uid ? "/" : "/about"} className="navbar__logo">
+              <span>profile manager.</span>
             </NavLink>
           </div>
-          <div className="navbar__rightwrapper">{links}</div>
+          <div
+            className="navbar__sidemenuopenwrapper"
+            onClick={this.handleSideBar}
+          >
+            <span>
+              {this.state.showSideBar ? (
+                <RiCloseFill />
+              ) : (
+                <HiOutlineDotsHorizontal />
+              )}
+            </span>
+          </div>
+          <SubNavBar
+            showSideBar={this.state.showSideBar}
+            handleSideBar={this.handleSideBar}
+            uid={uid}
+            handleLogOut={this.handleLogOut}
+          />
         </div>
       </div>
     );

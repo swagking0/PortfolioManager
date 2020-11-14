@@ -12,6 +12,10 @@ export const createDataItem = (dataitem) => {
     const SetField = "Field_" + dataitem.field;
     const SetValue = dataitem.value;
 
+    db.collection("AD").doc("appData").update({
+      TotalDF: dataitem.TotalDF,
+    });
+
     db.collection("DM")
       .doc(ActiveDMId)
       .collection(ActiveDMName)
@@ -74,6 +78,10 @@ export const deleteDataItem = (dataitem) => {
     const ActiveDMId = dataitem.DMId;
     const ActiveDMName = dataitem.DMName;
     const UpdateFieldName = dataitem.fieldname;
+
+    db.collection("AD").doc("appData").update({
+      TotalDF: dataitem.TotalDF,
+    });
 
     db.collection("DM")
       .doc(ActiveDMId)
