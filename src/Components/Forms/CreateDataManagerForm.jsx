@@ -12,11 +12,14 @@ import { createDataManager } from "../../Store/Actions/datamanagerActions";
  * React Redux
  */
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 /* +++++++++++++++++++ */
 
 class CreateDataManagerForm extends Component {
   state = {
     DMName: "",
+    TotalDM: 0,
   };
 
   handleOnChange = (e) => {
@@ -27,12 +30,19 @@ class CreateDataManagerForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
-      this.props.createDataManager(this.state);
-    } else {
-      notify("You do not have enough permission to perform this action.");
-    }
-    this.props.openModal();
+    this.setState(
+      {
+        TotalDM: this.props.AD[0].TotalDM + 1,
+      },
+      () => {
+        if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+          this.props.createDataManager(this.state);
+        } else {
+          notify("You do not have enough permission to perform this action.");
+        }
+        this.props.openModal();
+      }
+    );
   };
 
   render() {
@@ -64,8 +74,10 @@ class CreateDataManagerForm extends Component {
 
 const mapStateToProps = (state) => {
   const uid = state.firebase.auth.uid;
+  const { AD } = state.firestore.ordered;
   return {
     uid: uid,
+    AD: AD,
   };
 };
 
@@ -76,7 +88,17 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props) => {
+    if (props.uid) {
+      return [
+        {
+          collection: "AD",
+          doc: "appData",
+        },
+      ];
+    }
+    return [];
+  })
 )(CreateDataManagerForm);

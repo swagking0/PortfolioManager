@@ -12,6 +12,8 @@ import { createDataHolder } from "../../Store/Actions/dataholderActions";
  * React Redux
  */
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 /* +++++++++++++++++++ */
 
 class CreateDataHolderForm extends Component {
@@ -19,6 +21,7 @@ class CreateDataHolderForm extends Component {
     DMName: this.props.dmname,
     DMId: this.props.dmid,
     DHName: "",
+    TotalDH: 0,
   };
 
   handleOnChange = (e) => {
@@ -29,12 +32,19 @@ class CreateDataHolderForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
-      this.props.createDataHolder(this.state);
-    } else {
-      notify("You do not have enough permission to perform this action.");
-    }
-    this.props.openModal();
+    this.setState(
+      {
+        TotalDH: this.props.AD[0].TotalDH + 1,
+      },
+      () => {
+        if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+          this.props.createDataHolder(this.state);
+        } else {
+          notify("You do not have enough permission to perform this action.");
+        }
+        this.props.openModal();
+      }
+    );
   };
 
   render() {
@@ -66,8 +76,10 @@ class CreateDataHolderForm extends Component {
 
 const mapStateToProps = (state) => {
   const uid = state.firebase.auth.uid;
+  const { AD } = state.firestore.ordered;
   return {
     uid: uid,
+    AD: AD,
   };
 };
 
@@ -79,7 +91,17 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props) => {
+    if (props.uid) {
+      return [
+        {
+          collection: "AD",
+          doc: "appData",
+        },
+      ];
+    }
+    return [];
+  })
 )(CreateDataHolderForm);

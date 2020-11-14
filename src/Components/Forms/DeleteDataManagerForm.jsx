@@ -12,12 +12,15 @@ import { deleteDataManager } from "../../Store/Actions/datamanagerActions";
  * React Redux
  */
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 /* +++++++++++++++++++ */
 
 class DeleteDataManagerForm extends Component {
   state = {
     DMId: "",
     DMName: this.props.datamanager.DMName,
+    TotalDM: 0,
   };
 
   handleOnChange = (e) => {
@@ -28,16 +31,23 @@ class DeleteDataManagerForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
-      if (this.state.DMId === this.props.datamanager.id) {
-        this.props.deleteDataManager(this.state);
-      } else {
-        notify("Entered ID is worng. Please, try again.");
+    this.setState(
+      {
+        TotalDM: this.props.AD[0].TotalDM - 1,
+      },
+      () => {
+        if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+          if (this.state.DMId === this.props.datamanager.id) {
+            this.props.deleteDataManager(this.state);
+          } else {
+            notify("Entered ID is worng. Please, try again.");
+          }
+        } else {
+          notify("You do not have enough permission to perform this action.");
+        }
+        this.props.openModal();
       }
-    } else {
-      notify("You do not have enough permission to perform this action.");
-    }
-    this.props.openModal();
+    );
   };
 
   render() {
@@ -97,8 +107,10 @@ class DeleteDataManagerForm extends Component {
 
 const mapStateToProps = (state) => {
   const uid = state.firebase.auth.uid;
+  const { AD } = state.firestore.ordered;
   return {
     uid: uid,
+    AD: AD,
   };
 };
 
@@ -110,7 +122,17 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props) => {
+    if (props.uid) {
+      return [
+        {
+          collection: "AD",
+          doc: "appData",
+        },
+      ];
+    }
+    return [];
+  })
 )(DeleteDataManagerForm);

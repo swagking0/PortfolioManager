@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import SkeletonDatamanagerItem from "../../Skeletons/SubComponents/SkeletonDatamanagerItem";
 import DataManager from "../../DataManager/DataManager";
 import DatamanagerItemList from "../../DashboardItem/DatamanagerItem/DatamanagerItemList";
+import Analytics from "../../Analytics/Analytics";
 
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -10,11 +11,14 @@ import { compose } from "redux";
 
 class DashboardManager extends Component {
   render() {
-    const { dm } = this.props;
+    const { dm, ad } = this.props;
     const getlastLength = JSON.parse(localStorage.getItem("lastLength"));
     return (
       <div className="dashboardmanager__container">
         <div className="dashboardmanager__wrapper">
+          <div className="dashboardmanager__manageritemwrapper">
+            <Analytics ad={ad} />
+          </div>
           <div className="dashboardmanager__manageritemwrapper">
             <div className="datamanageritem__wrapper">
               <DataManager />
@@ -38,6 +42,7 @@ const mapStateToProps = (state) => {
   return {
     uid: uid,
     dm: state.firestore.ordered.DM,
+    ad: state.firestore.ordered.AD,
   };
 };
 
@@ -45,7 +50,12 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) => {
     if (props.uid) {
-      return [{ collection: "DM" }];
+      return [
+        { collection: "DM" },
+        {
+          collection: "AD",
+        },
+      ];
     }
     return [];
   })

@@ -15,7 +15,7 @@ class Dashboard extends Component {
     const { uid } = this.props;
 
     if (!uid) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/about" />;
     }
     return (
       <div className="dashboard__container">

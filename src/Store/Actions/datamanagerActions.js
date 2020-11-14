@@ -7,6 +7,10 @@ export const createDataManager = (datamanager) => {
     const firebase = getFirebase();
     const db = firebase.firestore();
 
+    db.collection("AD").doc("appData").update({
+      TotalDM: datamanager.TotalDM,
+    });
+
     db.collection("DM")
       .add({
         ...datamanager,
@@ -30,6 +34,10 @@ export const deleteDataManager = (datamanager) => {
     const db = firebase.firestore();
     const docID = datamanager.DMId;
     const docDBName = datamanager.DMName;
+
+    db.collection("AD").doc("appData").update({
+      TotalDM: datamanager.TotalDM,
+    });
 
     db.collection("DM")
       .doc(docID)

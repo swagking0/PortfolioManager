@@ -8,6 +8,10 @@ export const createDataHolder = (dataholder) => {
     const DMName = dataholder.DMName;
     const DMId = dataholder.DMId;
 
+    db.collection("AD").doc("appData").update({
+      TotalDH: dataholder.TotalDH,
+    });
+
     db.collection("DM")
       .doc(DMId)
       .collection(DMName)
@@ -32,6 +36,10 @@ export const deleteDataHolder = (dataholder) => {
     const DHdocID = dataholder.DHId;
     const DMId = dataholder.DMId;
     const DMName = dataholder.DMName;
+
+    db.collection("AD").doc("appData").update({
+      TotalDH: dataholder.TotalDH,
+    });
 
     db.collection("DM")
       .doc(DMId)

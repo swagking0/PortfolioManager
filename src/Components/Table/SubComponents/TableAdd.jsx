@@ -11,6 +11,8 @@ import { createDataItem } from "../../../Store/Actions/tableActions";
  * React Redux
  */
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 /* +++++++++++++++++++ */
 
 class TableAdd extends Component {
@@ -21,6 +23,7 @@ class TableAdd extends Component {
     DHName: this.props.dataholder.DHName,
     DMId: this.props.dataholder.DMId,
     DMName: this.props.dataholder.DMName,
+    TotalDF: 0,
   };
 
   handleOnChange = (e) => {
@@ -31,11 +34,18 @@ class TableAdd extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
-      this.props.createDataItem(this.state);
-    } else {
-      notify("You do not have enough permission to perform this action.");
-    }
+    this.setState(
+      {
+        TotalDF: this.props.AD[0].TotalDF + 1,
+      },
+      () => {
+        if (this.props.uid !== "9ALPoJY04RRCBqGnHzeB0qU1FzJ3") {
+          this.props.createDataItem(this.state);
+        } else {
+          notify("You do not have enough permission to perform this action.");
+        }
+      }
+    );
     e.target.reset();
   };
 
@@ -76,8 +86,10 @@ class TableAdd extends Component {
 
 const mapStateToProps = (state) => {
   const uid = state.firebase.auth.uid;
+  const { AD } = state.firestore.ordered;
   return {
     uid: uid,
+    AD: AD,
   };
 };
 
@@ -89,4 +101,17 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableAdd);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect((props) => {
+    if (props.uid) {
+      return [
+        {
+          collection: "AD",
+          doc: "appData",
+        },
+      ];
+    }
+    return [];
+  })
+)(TableAdd);

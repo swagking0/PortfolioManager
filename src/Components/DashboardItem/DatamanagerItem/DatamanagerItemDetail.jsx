@@ -32,7 +32,7 @@ class DatamanagerItemDetail extends Component {
     const { uid, dh } = this.props;
 
     if (!uid) {
-      return <Redirect to="/login" />;
+      return <Redirect to="/about" />;
     }
 
     return (
